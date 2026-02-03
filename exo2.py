@@ -25,6 +25,6 @@ try:
                     print("❚ ", end="")
                 else: print(". ", end="")
             print()
-        print("     A B C D E F G H")
+        print("     A B C D E F G H\n")
 except ValueError:
     print("Erreur - donnees invalides.")
