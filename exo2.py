@@ -21,8 +21,12 @@ try:
         for i in range(10):
             print(f"{str(10-i) :>2} | ", end= "")
             for j in range(8):
-                if niveaux[j] >= 10-i:
+                if j < 7 and niveaux[j] >= 10-i:
                     print("❚ ", end="")
+                elif j == 7 and niveaux[j] >= 10-i:
+                    print("❚", end="")
+                elif j == 7:
+                    print(".", end="")
                 else: print(". ", end="")
             print()
         print("     A B C D E F G H\n")
