@@ -27,11 +27,37 @@ Prompts EXACTS :
 """
 
 # TODO: Importer math
-
+import math
 # TODO: Lire les 4 valeurs
-
+distance = float(input("Entrez la distance jusqu'au CEPSUM (en kilometres) : "))
+attente_navette = float(input("Entrez le temps d'attente de la navette (en minutes) : "))
+temps_metro = float(input("Entrez le temps du trajet en metro (en minutes) : "))
+controle = float(input("Entrez le temps de controle a l'entree (en minutes) : "))
 # TODO: Validation
-
+if distance < 0 or attente_navette < 0 or temps_metro < 0 or controle < 0:
+    print("Erreur - donnees invalides.")
+else:
 # TODO: Calculer, arrondir (ceil) et determiner le(s) meilleur(s)
+    marche = distance * 60 / 5 + controle
+    marche = math.ceil(marche)
+    navette = attente_navette + distance * 60 / 18 + controle
+    navette = math.ceil(navette)
+    metro = temps_metro + controle
+    metro = math.ceil(metro)
 
-# TODO: Afficher la phrase exacte
+    if metro == navette == marche:
+        print("Egalite : marcher, navette et metro.")
+    elif metro == navette:
+        print("Egalite : navette et metro.")
+    elif metro == marche:
+        print("Egalite : marcher et metro.")
+    elif marche == navette:
+        print("Egalite : marcher et navette.")
+    else:
+        if min(marche, navette, metro) == marche:
+            gagnant = "marcher"
+        elif min(marche, navette, metro) == navette:
+            gagnant = "navette"
+        elif min(marche, navette, metro) == metro:
+            gagnant = "metro"
+        print(f"Option la plus rapide : {gagnant}.")

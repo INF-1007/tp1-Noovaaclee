@@ -36,9 +36,45 @@ Conseil :
 """
 
 # TODO: Lire n (int) et statut (str)
+try: 
 
-# TODO: Validation (n >= 0 et statut dans {O, N})
+    n=int(input("Entrez le nombre de billets necessaires : ")) 
+
+    statut=str(input("Entrez le statut etudiant (O/N) : "))
+
+except ValueError: 
+
+    print("Erreur - donnees invalides.") 
+
+# TODO: Validation (n >= 0 et statut dans {O, N}) 
+
+if n>=0 and (statut.lower() == "o" or statut.lower() == "n"):
+
+    a = n//24
+    e = n%24
+    b = e//12
+    f = e%12
+    c = f//5
+    d = f%5
+    t = a+b+c+d
+
+    if statut.lower() == "n":
+        p = a*66 + b*36 + c*15.75 + d*3.6
+    else:
+        p = 0.88*(a*66+b*36+c*15.75)+d*3.6
+
+# TODO: Calculer et afficher le resultat exact (6 lignes)
+
+    print(
+f"""Forfaits de 24 billets - {a}
+Forfaits de 12 billets - {b}
+Forfaits de 5 billets - {c}
+Billets unitaires - {d}
+Total billets - {n}
+Prix total - {p:.2f}$""")
 
 # TODO: Chercher la meilleure combinaison (A, B, C, D)
 
-# TODO: Calculer et afficher le resultat exact (6 lignes)
+else:
+
+    print("Erreur - donnees invalides.") 
